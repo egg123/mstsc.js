@@ -131,13 +131,14 @@
 		},
 		/**
 		 * connect
+		 * @param encryption {string} encryption to protect sensitive data for rdp
 		 * @param ip {string} ip target for rdp
 		 * @param domain {string} microsoft domain
 		 * @param username {string} session username
 		 * @param password {string} session password
 		 * @param next {function} asynchrone end callback
 		 */
-		connect : function (ip, domain, username, password, next) {
+		connect : function (encryption, ip, domain, username, password, next) {
 			// compute socket.io path (cozy cloud integration)
 			var parts = document.location.pathname.split('/')
 		      , base = parts.slice(0, parts.length - 1).join('/') + '/'
@@ -165,6 +166,7 @@
 			
 			// emit infos event
 			this.socket.emit('infos', {
+        encryption : parseInt(encryption),
 				ip : ip.split(/:/)[0],
 				port : ip.split(/:/)[1] || 3389,
 				screen : { 

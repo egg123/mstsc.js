@@ -33,7 +33,8 @@ module.exports = function (server) {
 				rdpClient.close();
 			};
 			
-			rdpClient = rdp.createClient({ 
+			rdpClient = rdp.createClient({
+        encryption : infos.encryption,
 				domain : infos.domain, 
 				userName : infos.username,
 				password : infos.password,
